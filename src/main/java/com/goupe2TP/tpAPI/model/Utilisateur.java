@@ -2,6 +2,8 @@ package com.goupe2TP.tpAPI.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Utilisateur {
     @Id
@@ -15,6 +17,8 @@ public class Utilisateur {
     private int age;
     @Column(nullable = false, length = 225)
     private String telephone;
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+    private List<Quiz> quiz;
     @Column(nullable = false, unique = true)
     private String email;
 

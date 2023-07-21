@@ -26,12 +26,12 @@ public class UtilisateurController {
     }
 
     // LA METHODE UPDATE
-    @PutMapping("/update{id}")
+    @PutMapping("/update/{id}")
     public Utilisateur update(@PathVariable Long id, @RequestBody Utilisateur utilisateur){
         return utilisateurService.modifier(id, utilisateur);
     }
     // LA METHODE DELETE
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     public String delete (@PathVariable Long id){
         return utilisateurService.supprimer(id);
     }

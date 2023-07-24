@@ -17,18 +17,38 @@ public class utilisateur_service {
     @Autowired
     private Repository_utilisateur repositoryUtilisateur;
 
-    public void addUser(utilisateur user){
+    public void addUser(utilisateur user)
+    {
         repositoryUtilisateur.save(user);
+
     }
     public utilisateur update(utilisateur user){
         repositoryUtilisateur.save(user);
         return repositoryUtilisateur.findById(user.getId());
     }
-    public void deleteUtilisateur(int id){
+    public void delete(int id){
         repositoryUtilisateur.deleteById(id);
     }
-    public List<utilisateur> getUsers(){
+
+    public List<utilisateur> read(){
         return repositoryUtilisateur.findAll();
     }
 
+    public utilisateur read(int id){
+       return  repositoryUtilisateur.findById(id);
+    }
+
+    public utilisateur put(utilisateur user) {
+        return repositoryUtilisateur.save(user);
+    }
+
+    //methode de connexion
+    public utilisateur connexion(String email, String motDePasse){
+        repositoryUtilisateur.findByEmailAndMotDePasse( email, motDePasse);
+        if (repositoryUtilisateur.findByEmailAndMotDePasse(email, motDePasse) != null) {
+            return repositoryUtilisateur.findByEmailAndMotDePasse(email,motDePasse);
+        } else {
+            return null;
+        }
+    }
 }

@@ -1,65 +1,41 @@
 package com.goupe2TP.tpAPI.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import jakarta.validation.constraints.Pattern;
+import lombok.Data;
+import java.util.List;
 
+@Data
 @Entity
 @Table(name = "Utilisateur")
 public class utilisateur {
     @Id
-    @Column(name = "utilisateur_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "utilisateur_nom")
-    private String Nom;
+    @Column(nullable = false)
+    private String nom;
 
-    @Column(name = "utilisateur_prenom")
-    private String Prenom;
+    @Column(nullable = false)
+    private String prenom;
 
-    @Column(name = "utilisateur_email")
-    private  String Email;
+    @Column(nullable = false, unique = true)
+    private  String email;
 
-    @Column(name = "utilisateur_age")
-    private  int Age;
+    @Pattern(regexp = "^[a-z-A-Z]")
+    @Column(nullable = false)
+    private String motDePasse;
 
-    public int getId() {
-        return id;
-    }
+    @Column(nullable = false)
+    private  int age;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+   @OneToMany
+            (       mappedBy = "utilisateur",
+                    cascade = CascadeType.ALL
+            )
+    @Column(nullable = false)
+    @JsonIgnoreProperties("utilisateur")
+    private List<Quiz> quizList;
 
-    public String getNom() {
-        return Nom;
-    }
-
-    public void setNom(String nom) {
-        Nom = nom;
-    }
-
-    public String getPrenom() {
-        return Prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        Prenom = prenom;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public int getAge() {
-        return Age;
-    }
-
-    public void setAge(int age) {
-        Age = age;
-    }
 }

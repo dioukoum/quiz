@@ -12,4 +12,5 @@ public utilisateur findById(int id);
 public List<utilisateur> findAll();
 
 
+    utilisateur findByEmailAndMotDePasse(String email, String motDePasse);
 }

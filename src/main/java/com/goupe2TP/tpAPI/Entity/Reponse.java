@@ -1,32 +1,22 @@
 package com.goupe2TP.tpAPI.Entity;
-
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "Reponse")
 public class Reponse {
     @Id
-    @Column(name = "reponse_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "reponse_text")
+    @Column(nullable = false)
     private String text;
 
-    public int getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "question_id",nullable = false)
+    private Questions questions;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
 }
 

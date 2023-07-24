@@ -1,31 +1,34 @@
 package com.goupe2TP.tpAPI.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
 @Entity
 @Table(name = "question")
 public class Questions {
     @Id
-    @Column(name = "question_id")
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "question_text")
+    @Column(nullable = false)
     private String text;
 
-    public int getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn (name = "quiz_id", nullable = false)
+    private Quiz quiz;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getText() {
-        return text;
-    }
+    @OneToMany
+            (mappedBy = "questions", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("questions")
+    @Column(nullable = false)
+    private List<Reponse> reponses;
 
-    public void setText(String text) {
-        this.text = text;
-    }
 }

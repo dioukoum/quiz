@@ -1,5 +1,7 @@
 package com.goupe2TP.tpAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,9 +21,15 @@ public class Utilisateur {
     private int age;
     @Column(nullable = false, length = 225)
     private String telephone;
+
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+    @Column(nullable = false)
+    @JsonIgnoreProperties("utilisateur")
     private List<Quiz> quiz;
+
     @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
+    private String motDePass;
 
 }

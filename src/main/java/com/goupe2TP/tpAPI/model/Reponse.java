@@ -1,6 +1,9 @@
 package com.goupe2TP.tpAPI.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
 
 @Entity
 public class Reponse {
@@ -17,44 +20,8 @@ public class Reponse {
     @Column(nullable = false)
     private boolean iscorrect;
 
-    public boolean isIscorrect() {
-        return iscorrect;
-    }
 
-    public void setIscorrect(boolean iscorrect) {
-        this.iscorrect = iscorrect;
-    }
-
-    public Reponse() {
-    }
-
-    public Reponse(Long id, String text, Question question) {
-        this.id = id;
-        this.text = text;
-        this.question = question;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
+    public boolean getIscorrect() {
+        return false;
     }
 }

@@ -2,40 +2,55 @@ package com.goupe2TP.tpAPI.service;
 
 import com.goupe2TP.tpAPI.model.Quiz;
 import com.goupe2TP.tpAPI.repository.QuizRepository;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Data
 @Service
 public class QuizServiceImpl implements QuizService{
     private final QuizRepository quizRepository;
+
+
+
+    @Autowired
+
 
     public QuizServiceImpl(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
     }
 
     @Override
-    public Quiz creer(Quiz quiz) {
+    public Quiz creerQuiz(Quiz quiz) {
         return quizRepository.save(quiz);
     }
 
     @Override
-    public List<Quiz> Lire() {
+    public List<Quiz> LireQuiz() {
         return quizRepository.findAll();
+    }
+    @Override
+    public Quiz getUser(Long id, Quiz quiz){
+        return quizRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Quiz non trouvé !"));
+
     }
 
     @Override
-    public Quiz modifier(Long id, Quiz quiz) {
+    public Quiz modifierQuiz(Long id, Quiz quiz) {
         return quizRepository.findById(id).map(q ->{
 
             q.setTitre(quiz.getTitre());
+            q.setUtilisateur(quiz.getUtilisateur());
 
             return quizRepository.save(q);
         }).orElseThrow(()-> new RuntimeException("Quiz non trouvé !"));
     }
 
     @Override
-    public String supprimer(Long id) {
+    public String supprimerQuiz(Long id) {
         quizRepository.deleteById(id);
         return "Quiz supprimer avec succès !";
     }

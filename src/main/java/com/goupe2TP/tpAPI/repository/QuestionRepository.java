@@ -9,11 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface QuestionRepository extends JpaRepository <Question, Long> {
-    Optional<Question> findById(Long id);
 
-    List<Question> findAll();
-
-    Question save(Question question);
-
-    void deleteById(Long id);
 }

@@ -2,14 +2,19 @@ package com.goupe2TP.tpAPI.service;
 
 import com.goupe2TP.tpAPI.model.Utilisateur;
 import com.goupe2TP.tpAPI.repository.UtilisateurRepository;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Data
 
 @Service
 
 public class UtilisateurServiceImpl implements UtilisateurService{
     private final UtilisateurRepository utilisateurRepository;
+
+    @Autowired
 
     public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
@@ -24,6 +29,14 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     public List<Utilisateur> Lire() {
         return utilisateurRepository.findAll();
     }
+
+    @Override
+    public Utilisateur getUser(Long id, Utilisateur utilisateur){
+        return utilisateurRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Utilisateur non trouvé !"));
+
+    }
+
 
     @Override
     public Utilisateur modifier(Long id, Utilisateur utilisateur) {

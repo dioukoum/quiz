@@ -25,6 +25,11 @@ public class UtilisateurController {
         return utilisateurService.Lire();
     }
 
+    @GetMapping("/read/{id}")
+    public Utilisateur read(@PathVariable Long id, @RequestBody Utilisateur utilisateur){
+        return utilisateurService.getUser(id, utilisateur);
+    }
+
     // LA METHODE UPDATE
     @PutMapping("/update/{id}")
     public Utilisateur update(@PathVariable Long id, @RequestBody Utilisateur utilisateur){

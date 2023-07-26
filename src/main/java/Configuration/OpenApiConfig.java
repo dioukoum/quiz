@@ -14,5 +14,4 @@ public class OpenApiConfig {
                         .description("Your API Description")
                         .version("1.0"));
     }
-
 }

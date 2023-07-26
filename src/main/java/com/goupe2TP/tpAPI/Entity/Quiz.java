@@ -7,7 +7,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -34,4 +36,8 @@ public class Quiz {
     @Column(nullable = false)
     private List<Questions> questions;
 
+    @OneToMany(mappedBy = "idQuiz",fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnore
+    private List<Participants> participants;
 }

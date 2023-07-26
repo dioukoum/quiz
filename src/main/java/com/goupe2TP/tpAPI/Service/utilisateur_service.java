@@ -1,6 +1,7 @@
 package com.goupe2TP.tpAPI.Service;
 
 import com.goupe2TP.tpAPI.Entity.utilisateur;
+import com.goupe2TP.tpAPI.Entity.utilisateurAlreadyExistsException;
 import com.goupe2TP.tpAPI.Repository.Repository_utilisateur;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,17 @@ public class utilisateur_service {
     @Autowired
     private Repository_utilisateur repositoryUtilisateur;
 
-    public void addUser(utilisateur user)
+    public String addUser(utilisateur user) throws utilisateurAlreadyExistsException
     {
-        repositoryUtilisateur.save(user);
-
+       utilisateur utilisateurExiste = repositoryUtilisateur.findById(user.getId());
+       if(utilisateurExiste == null) {
+           repositoryUtilisateur.save(user);
+           return "ajout avec succes";
+       }else {
+           throw new utilisateurAlreadyExistsException("utilisateur existe");
+       }
     }
+
     public utilisateur update(utilisateur user){
         repositoryUtilisateur.save(user);
         return repositoryUtilisateur.findById(user.getId());

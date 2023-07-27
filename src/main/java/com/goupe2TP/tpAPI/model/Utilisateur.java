@@ -3,6 +3,8 @@ package com.goupe2TP.tpAPI.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.util.List;
@@ -33,7 +35,9 @@ public class Utilisateur {
     private List<Quiz> quiz;
 
     @Column(nullable = false, unique = true)
+    @Email(message = "Email doit être un format valide !")
     private String email;
+
     @Column(nullable = false)
     private String motDePass;
 

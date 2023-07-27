@@ -18,6 +18,8 @@ public class Reponse {
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
+
+
     @Column(nullable = false)
     private boolean iscorrect;
 

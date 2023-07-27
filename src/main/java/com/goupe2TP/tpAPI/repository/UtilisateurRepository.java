@@ -8,4 +8,5 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface UtilisateurRepository extends JpaRepository <Utilisateur, Long> {
+
 }

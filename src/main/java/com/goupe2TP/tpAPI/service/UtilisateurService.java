@@ -3,6 +3,7 @@ package com.goupe2TP.tpAPI.service;
 import com.goupe2TP.tpAPI.model.Utilisateur;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UtilisateurService {
     Utilisateur creer(Utilisateur utilisateur);

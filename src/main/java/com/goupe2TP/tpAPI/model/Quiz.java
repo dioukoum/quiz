@@ -27,6 +27,11 @@ public class Quiz {
     @JsonIgnoreProperties("quiz")
     private List<Question> question;
 
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    @Column(nullable = false)
+    @JsonIgnoreProperties("quiz")
+    private List<Participation> participation;
+
     @ManyToOne
     @JoinColumn(name ="utilisateur_id", nullable = false)
     private Utilisateur utilisateur;

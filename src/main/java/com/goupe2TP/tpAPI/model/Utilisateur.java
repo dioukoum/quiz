@@ -25,6 +25,11 @@ public class Utilisateur {
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
     @Column(nullable = false)
     @JsonIgnoreProperties("utilisateur")
+    private List<Participation> participation;
+
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+    @Column(nullable = false)
+    @JsonIgnoreProperties("utilisateur")
     private List<Quiz> quiz;
 
     @Column(nullable = false, unique = true)

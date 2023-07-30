@@ -31,4 +31,8 @@ public class Questions {
     @Column(nullable = false)
     private List<Reponse> reponses;
 
+    @JsonIgnore
+    public List<Reponse> getReponses() {
+        return reponses;
+    }
 }

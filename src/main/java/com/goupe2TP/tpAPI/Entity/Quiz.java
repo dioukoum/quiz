@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Entity
@@ -27,7 +24,6 @@ public class Quiz {
 
     @ManyToOne
     @JoinColumn(name = "utilisateur_id",nullable = false)
-    //@JsonIgnore
     private utilisateur utilisateur;
 
     @OneToMany
@@ -40,4 +36,11 @@ public class Quiz {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
     private List<Participants> participants;
+
+    @OneToMany
+    @JsonIgnore
+    public List<Questions> getQuestions(){
+        return questions;
+    }
+
 }

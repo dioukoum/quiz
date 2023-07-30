@@ -31,4 +31,8 @@ public Reponse_service(Repository_reponse repositoryReponse){
     public Reponse updateReponse(Reponse reponse){
     return repositoryReponse.save(reponse);
     }
+
+    public List<Reponse> getReponse(int id){
+    return repositoryReponse.getReponseByQuestionsId(id);
+    }
 }

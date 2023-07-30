@@ -1,4 +1,5 @@
 package com.goupe2TP.tpAPI.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,7 +17,11 @@ public class Reponse {
 
     @ManyToOne
     @JoinColumn(name = "question_id",nullable = false)
+    @JsonIgnoreProperties("quiz")
     private Questions questions;
+
+    @Column(nullable = false)
+    private String correcte;
 
 }
 

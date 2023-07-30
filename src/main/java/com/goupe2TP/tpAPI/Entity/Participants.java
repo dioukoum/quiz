@@ -19,4 +19,7 @@ public class Participants {
     @Column(nullable = false)
     private int score;
 
+    @Column(nullable = false)
+    private int niveau;
+
 }

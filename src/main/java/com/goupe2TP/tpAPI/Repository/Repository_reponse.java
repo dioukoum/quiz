@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface Repository_reponse extends CrudRepository<Reponse, Integer> {
     List<Reponse> findAll();
+    List<Reponse> getReponseByQuestionsId(int id);
 }

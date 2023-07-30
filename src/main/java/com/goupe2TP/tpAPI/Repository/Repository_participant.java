@@ -10,4 +10,6 @@ import java.util.List;
 public interface Repository_participant extends CrudRepository<Participants, Integer> {
     List<Participants> findAll();
 
+    Participants findByIdUtilisateurIdAndIdQuizId(int idUser, int idQuiz);
+
 }

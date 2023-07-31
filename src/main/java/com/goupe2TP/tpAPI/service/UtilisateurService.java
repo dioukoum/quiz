@@ -8,6 +8,7 @@ public interface UtilisateurService {
     Utilisateur creer(Utilisateur utilisateur);
     List<Utilisateur> Lire();
     Utilisateur getUser(Long id, Utilisateur utilisateur);
+    //Utilisateur supprimer(Long id, Utilisateur utilisateur);
 
     Utilisateur modifier(Long id, Utilisateur utilisateur);
     String supprimer(Long id);

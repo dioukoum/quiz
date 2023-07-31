@@ -51,7 +51,15 @@ public class QuizServiceImpl implements QuizService{
 
     @Override
     public String supprimerQuiz(Long id) {
-        quizRepository.deleteById(id);
-        return "Quiz supprimer avec succès !";
+        Quiz quiz = quizRepository.findById(id).orElseThrow(()-> new RuntimeException("Quiz non trouvé !"));
+
+        if (quiz != null ){
+            quizRepository.deleteById(quiz.getId());
+            return "Quiz supprimer avec succès !";
+        }
+        if (quiz == null){
+            return "Quiz non trouvé !";
+        }
+        return null;
     }
 }

@@ -41,7 +41,15 @@ public class QuestionServiceImpl implements QuestionService{
 
     @Override
     public String supprimerQuestion(Long id) {
-        questionRepository.deleteById(id);
-        return "Question supprimer avec succès !";
+        Question question = questionRepository.findById(id).orElseThrow(()-> new RuntimeException("Question non trouvé !"));
+
+        if (question != null ){
+            questionRepository.deleteById(question.getId());
+            return "Question supprimer avec succès !";
+        }
+        if (question == null){
+            return "Question non trouvé !";
+        }
+        return null;
     }
 }

@@ -44,7 +44,15 @@ public class ReponseServiceImpl implements ReponseService{
 
     @Override
     public String supprimerReponse(Long id) {
-        reponseRepository.deleteById(id);
-        return "Reponse supprimer avec succès !";
+        Reponse reponse = reponseRepository.findById(id).orElseThrow(()-> new RuntimeException("Reponse non trouvé !"));
+
+        if (reponse != null ){
+            reponseRepository.deleteById(reponse.getId());
+            return "Réponse supprimer avec succès !";
+        }
+        if (reponse == null){
+            return "Réponse non trouvé !";
+        }
+        return null;
     }
 }

@@ -47,7 +47,7 @@ public class UtilisateurController {
     // LA METHODE DELETE
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "Supprimer un utilisateur par son ID")
-    public String delete (@PathVariable Long id){
+    public String delete (@Valid @PathVariable Long id){
 
         return utilisateurService.supprimer(id);
     }

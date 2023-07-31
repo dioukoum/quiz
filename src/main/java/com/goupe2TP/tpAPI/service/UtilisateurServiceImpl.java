@@ -55,8 +55,17 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
     @Override
     public String supprimer(Long id) {
-        utilisateurRepository.deleteById(id);
-        return "Utilisateur supprimer avec succès !";
+        Utilisateur utilisateur = utilisateurRepository.findById(id).orElseThrow(()-> new RuntimeException("Utilisateur non trouvé !"));
+
+        if (utilisateur != null ){
+            utilisateurRepository.deleteById(utilisateur.getId());
+            return "Utilisateur supprimer avec succès !";
+        }
+        if (utilisateur == null){
+            return "Utilisateur non trouvé !";
+        }
+        return null;
+
     }
 
 }

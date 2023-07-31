@@ -1,6 +1,7 @@
 package com.goupe2TP.tpAPI.service;
 
 import com.goupe2TP.tpAPI.model.Participation;
+
 import com.goupe2TP.tpAPI.repository.ParticipationRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,15 @@ public class ParticipationServiceImpl implements ParticipationService{
 
     @Override
     public String supprimerParticipation(Long id) {
-        participationRepository.deleteById(id);
-        return "Participation supprimer avec succès !";
+        Participation participation = participationRepository.findById(id).orElseThrow(()-> new RuntimeException("Participation non trouvé !"));
+
+        if (participation != null ){
+            participationRepository.deleteById(participation.getId());
+            return "Participation supprimer avec succès !";
+        }
+        if (participation == null){
+            return "Participation non trouvé !";
+        }
+        return null;
     }
 }

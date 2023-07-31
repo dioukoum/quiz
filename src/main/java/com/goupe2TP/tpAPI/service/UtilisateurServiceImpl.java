@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Data
 
 @Service
@@ -33,7 +35,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     @Override
     public Utilisateur getUser(Long id, Utilisateur utilisateur){
         return utilisateurRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Utilisateur non trouvé !"));
+                .orElseThrow(null);
 
     }
 
@@ -55,6 +57,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
     @Override
     public String supprimer(Long id) {
+<<<<<<< HEAD
         Utilisateur utilisateur = utilisateurRepository.findById(id).orElseThrow(()-> new RuntimeException("Utilisateur non trouvé !"));
 
         if (utilisateur != null ){
@@ -65,6 +68,18 @@ public class UtilisateurServiceImpl implements UtilisateurService{
             return "Utilisateur non trouvé !";
         }
         return null;
+=======
+        utilisateurRepository.deleteById(id);
+        //return "Utilisateur supprimer avec succès !";
+        Utilisateur utilisateur = utilisateurRepository.findById(id).orElseThrow(null);
+        if(utilisateur != null){
+            utilisateurRepository.deleteById(id);
+            return "Utilisateur supprimer avec succès !";
+
+        }else {
+            return "Utilisateur non trouvé !";
+        }
+>>>>>>> 123ae2c6daeb8f53a489c9b28f8477d6d0ddb928
 
     }
 

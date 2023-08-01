@@ -2,6 +2,7 @@ package com.goupe2TP.tpAPI.Controleur;
 
 import com.goupe2TP.tpAPI.Entity.utilisateur;
 import com.goupe2TP.tpAPI.Service.utilisateur_service;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class utilisateur_controleur {
         }
     }
     @PostMapping("/ajouter")
-    public String access(@RequestBody utilisateur user){
+    public String access(@Valid @RequestBody utilisateur user){
         utilisateurService.addUser(user);
         return  "ajout avec succès";
     }

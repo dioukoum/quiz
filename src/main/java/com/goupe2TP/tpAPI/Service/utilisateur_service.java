@@ -18,9 +18,9 @@ public class utilisateur_service {
     @Autowired
     private Repository_utilisateur repositoryUtilisateur;
 
-    public String addUser(utilisateur user) throws utilisateurAlreadyExistsException
+    public String addUser(utilisateur user)
     {
-       utilisateur utilisateurExiste = repositoryUtilisateur.findById(user.getId());
+       utilisateur utilisateurExiste = repositoryUtilisateur.findByEmail(user.getEmail());
        if(utilisateurExiste == null) {
            repositoryUtilisateur.save(user);
            return "ajout avec succes";
@@ -45,9 +45,6 @@ public class utilisateur_service {
        return  repositoryUtilisateur.findById(id);
     }
 
-    public utilisateur put(utilisateur user) {
-        return repositoryUtilisateur.save(user);
-    }
 
     //methode de connexion
     public utilisateur connexion(String email, String motDePasse){

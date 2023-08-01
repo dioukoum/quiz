@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface Repository_utilisateur extends CrudRepository<utilisateur,Integer> {
 public utilisateur findById(int id);
+utilisateur findByEmail(String email);
 public List<utilisateur> findAll();
 
 

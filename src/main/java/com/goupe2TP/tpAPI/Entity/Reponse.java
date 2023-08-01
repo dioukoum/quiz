@@ -22,6 +22,5 @@ public class Reponse {
 
     @Column(nullable = false)
     private String correcte;
-
 }
 

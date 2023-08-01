@@ -2,7 +2,7 @@ package com.goupe2TP.tpAPI.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.util.HashSet;
@@ -18,18 +18,27 @@ public class utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "le champ ne doit pas etre vide")
     @Column(nullable = false)
     private String nom;
 
+    @NotBlank(message = "le champ ne doit pas etre vide")
     @Column(nullable = false)
     private String prenom;
 
+    @Email(message = "address mail invalide")
     @Column(nullable = false, unique = true)
     private  String email;
 
+    @Pattern(regexp = "^\\d{8}$", message = "numero incorrect")
+    private String tel;
+
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$", message = "votre message est incorrecte")
     @Column(nullable = false)
     private String motDePasse;
 
+    @Min(value = 18,message = "votre age doit être supperieur a 18 ans")
+    @Max(value = 60, message = "votre age doit être inferieur a 60 ans ")
     @Column(nullable = false)
     private  int age;
 
